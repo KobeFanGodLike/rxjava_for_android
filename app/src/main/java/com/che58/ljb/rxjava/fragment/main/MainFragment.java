@@ -1,5 +1,6 @@
 package com.che58.ljb.rxjava.fragment.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.che58.ljb.rxjava.R;
+import com.che58.ljb.rxjava.TestActivity;
 import com.che58.ljb.rxjava.fragment.BufferFragment;
 import com.che58.ljb.rxjava.fragment.CheckBoxUpdateFragment;
 import com.che58.ljb.rxjava.fragment.LoopFragment;
@@ -104,6 +106,11 @@ public class MainFragment extends Fragment {
     void btn_reuseSubscriber(){
         open(new ReuseSubscriberFragment());
     }
+    @OnClick(R.id.btn_test)
+    void btn_test(){
+        startActivity(new Intent(getActivity(), TestActivity.class));
+    }
+
     /**
      * 开启新的Fragment
      */

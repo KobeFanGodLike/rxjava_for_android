@@ -1,8 +1,11 @@
 package com.che58.ljb.rxjava.protocol2;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.che58.ljb.rxjava.net.XgoHttpClient;
+import com.che58.ljb.rxjava.utils.MyLog;
+import com.che58.ljb.rxjava.utils.XgoLog;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 
@@ -32,12 +35,22 @@ public abstract class BaseProtocol {
      * @param method
      * @param params
      */
-    protected <T> Observable<T> createObservable(final String url, final String method, final Map<String, Object> params, final Class<T> clazz) {
+    protected <T> Observable<T> createObservable(final String url, final String method, final
+    Map<String, Object> params, final Class<T> clazz) {
         return Observable.create(new Observable.OnSubscribe<T>() {
             @Override
             public void call(Subscriber<? super T> subscriber) {
                 Request request = XgoHttpClient.getClient().getRequest(url, method, params);
                 String json = XgoHttpClient.getClient().execute2String(request);
+                /*打印log*/
+                StringBuffer sb = new StringBuffer();
+                for (String key : params.keySet()) {
+                    sb.append("&" + key + "=" + params.get(key));
+                }
+                MyLog.e("网络请求参数拼接：" + sb.toString());
+                if (!TextUtils.isEmpty(json)) {
+                    MyLog.e("返回的json=" + json);
+                }
                 setData(subscriber, json, clazz);
             }
         }).subscribeOn(Schedulers.io());
@@ -52,9 +65,7 @@ public abstract class BaseProtocol {
             subscriber.onError(new Throwable("not data"));
             return;
         }
-
         T data = mGson.fromJson(json, clazz);
-
         subscriber.onNext(data);
         subscriber.onCompleted();
     }

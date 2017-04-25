@@ -4,151 +4,200 @@ import android.util.Log;
 
 public final class XgoLog {
 
-	/** 是否允许输出log
-	 *  -1：  不允许
-	 *  其他：根据等级允许
-	 * */
-	private static int mDebuggable = 10;
+    /**
+     * 是否允许输出log
+     * -1：  不允许
+     * 其他：根据等级允许
+     */
+    private static int mDebuggable = 10;
 
-	/** 日志输出时的TAG */
+    /**
+     * 日志输出时的TAG
+     */
 
-	private static String mTag = "xgo";
+    private static String mTag = "xgo";
 
 
-	/** 日志输出级别NONE */
-	public static final int LEVEL_NONE = 0;
+    /**
+     * 日志输出级别NONE
+     */
+    public static final int LEVEL_NONE = 0;
 
 
-	/** 日志输出级别V */
+    /**
+     * 日志输出级别V
+     */
 
-	public static final int LEVEL_VERBOSE = 1;
+    public static final int LEVEL_VERBOSE = 1;
 
-	/** 日志输出级别D */
+    /**
+     * 日志输出级别D
+     */
 
-	public static final int LEVEL_DEBUG = 2;
+    public static final int LEVEL_DEBUG = 2;
 
-	/** 日志输出级别I */
+    /**
+     * 日志输出级别I
+     */
 
-	public static final int LEVEL_INFO = 3;
+    public static final int LEVEL_INFO = 3;
 
-	/** 日志输出级别W */
+    /**
+     * 日志输出级别W
+     */
 
-	public static final int LEVEL_WARN = 4;
+    public static final int LEVEL_WARN = 4;
 
-	/** 日志输出级别E */
+    /**
+     * 日志输出级别E
+     */
 
-	public static final int LEVEL_ERROR = 5;
+    public static final int LEVEL_ERROR = 5;
+    public static boolean isDebug = true;
 
-	private XgoLog() throws InstantiationException {
-		throw new InstantiationException("This class is not created for instantiation");
-	}
+    private XgoLog() throws InstantiationException {
+        throw new InstantiationException("This class is not created for instantiation");
+    }
 
-	/** 以级别为v 的形式输出LOG */
+    /**
+     * 以级别为v 的形式输出LOG
+     */
 
-	public static void v(String msg) {
+    public static void v(String msg) {
 
-		if (mDebuggable >= LEVEL_VERBOSE) {
+        if (mDebuggable >= LEVEL_VERBOSE) {
 
-			Log.v(mTag, msg);
+            Log.v(mTag, msg);
 
-		}
+        }
 
-	}
+    }
 
-	/** 以级别为 d 的形式输出LOG */
+    /**
+     * 以级别为 d 的形式输出LOG
+     */
 
-	public static void d(String msg) {
+    public static void d(String msg) {
 
-		if (mDebuggable >= LEVEL_DEBUG) {
+        if (mDebuggable >= LEVEL_DEBUG) {
 
-			Log.d(mTag, msg);
+            Log.d(mTag, msg);
 
-		}
+        }
 
-	}
+    }
 
-	/** 以级别为 i 的形式输出LOG */
+    /**
+     * 以级别为 i 的形式输出LOG
+     */
 
-	public static void i(String msg) {
+    public static void i(String msg) {
 
-		if (mDebuggable >= LEVEL_INFO) {
+        if (mDebuggable >= LEVEL_INFO) {
 
-			Log.i(mTag, msg);
+            Log.i(mTag, msg);
 
-		}
+        }
 
-	}
+    }
 
-	/** 以级别为 w 的形式输出LOG */
+    /**
+     * 以级别为 w 的形式输出LOG
+     */
 
-	public static void w(String msg) {
+    public static void w(String msg) {
 
-		if (mDebuggable >= LEVEL_WARN) {
+        if (mDebuggable >= LEVEL_WARN) {
 
-			Log.w(mTag, msg);
+            Log.w(mTag, msg);
 
-		}
+        }
 
-	}
+    }
 
-	/** 以级别为 w 的形式输出Throwable */
+    /**
+     * 以级别为 w 的形式输出Throwable
+     */
 
-	public static void w(Throwable tr) {
+    public static void w(Throwable tr) {
 
-		if (mDebuggable >= LEVEL_WARN) {
+        if (mDebuggable >= LEVEL_WARN) {
 
-			Log.w(mTag, "", tr);
+            Log.w(mTag, "", tr);
 
-		}
+        }
 
-	}
+    }
 
-	/** 以级别为 w 的形式输出LOG信息和Throwable */
+    /**
+     * 以级别为 w 的形式输出LOG信息和Throwable
+     */
 
-	public static void w(String msg, Throwable tr) {
+    public static void w(String msg, Throwable tr) {
 
-		if (mDebuggable >= LEVEL_WARN && null != msg) {
+        if (mDebuggable >= LEVEL_WARN && null != msg) {
 
-			Log.w(mTag, msg, tr);
+            Log.w(mTag, msg, tr);
 
-		}
+        }
 
-	}
+    }
 
-	/** 以级别为 e 的形式输出LOG */
+    /**
+     * 以级别为 e 的形式输出LOG
+     */
 
-	public static void e(String msg) {
+    public static void e(String msg) {
 
-		if (mDebuggable >= LEVEL_ERROR) {
+        if (mDebuggable >= LEVEL_ERROR) {
 
-			Log.e(mTag, msg);
+            Log.e(mTag, msg);
 
-		}
+        }
 
-	}
+    }
 
-	/** 以级别为 e 的形式输出Throwable */
+    /**
+     * 以级别为 e 的形式输出Throwable
+     */
 
-	public static void e(Throwable tr) {
+    public static void e(Throwable tr) {
 
-		if (mDebuggable >= LEVEL_ERROR) {
+        if (mDebuggable >= LEVEL_ERROR) {
 
-			Log.e(mTag, "", tr);
+            Log.e(mTag, "", tr);
 
-		}
+        }
 
-	}
+    }
 
-	/** 以级别为 e 的形式输出LOG信息和Throwable */
+    /**
+     * 以级别为 e 的形式输出LOG信息和Throwable
+     */
 
-	public static void e(String msg, Throwable tr) {
+    public static void e(String msg, Throwable tr) {
 
-		if (mDebuggable >= LEVEL_ERROR && null != msg) {
+        if (mDebuggable >= LEVEL_ERROR && null != msg && isDebug) {
 
-			Log.e(mTag, msg, tr);
+            Log.e(mTag, msg, tr);
 
-		}
+        }
 
-	}
+    }
 
+//    private StackTraceElement getTargetStackTraceElement() {
+//        // find the target invoked method
+//        StackTraceElement targetStackTrace = null;
+//        boolean shouldTrace = false;
+//        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+//        for (StackTraceElement stackTraceElement : stackTrace) {
+//            boolean isLogMethod = stackTraceElement.getClassName().equals(L.class.getName());
+//            if (shouldTrace && !isLogMethod) {
+//                targetStackTrace = stackTraceElement;
+//                break;
+//            }
+//            shouldTrace = isLogMethod;
+//        }
+//        return targetStackTrace;
+//    }
 }
