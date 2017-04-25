@@ -2,7 +2,6 @@ package com.che58.ljb.rxjava.protocol2;
 
 import com.che58.ljb.rxjava.model.DeleteModel;
 import com.che58.ljb.rxjava.model.GetModel;
-import com.che58.ljb.rxjava.model.PostModel;
 import com.che58.ljb.rxjava.model.PutModel;
 import com.che58.ljb.rxjava.net.XgoHttpClient;
 
@@ -29,9 +28,15 @@ public class TestProtocol extends BaseProtocol {
 
     /**
      * Post请求
+     *
+     * @param url    请求路径url
+     * @param params 请求参数map集合
+     * @param clazz  请求实体类
+     * @return
      */
-    public Observable<PostModel> text_Post(Map<String, Object> params) {
-        return createObservable(BASE_URL, XgoHttpClient.METHOD_POST, params, PostModel.class);
+    public <T> Observable<T> test_post(String url, Map<String, Object> params, final Class<T>
+            clazz) {
+        return createObservable(url, XgoHttpClient.METHOD_POST, params, clazz);
     }
 
     /**
@@ -46,7 +51,8 @@ public class TestProtocol extends BaseProtocol {
      */
     public Observable<DeleteModel> text_Delete() {
         String path = "1";
-        return createObservable(BASE_URL + path, XgoHttpClient.METHOD_DELETE, null, DeleteModel.class);
+        return createObservable(BASE_URL + path, XgoHttpClient.METHOD_DELETE, null, DeleteModel
+                .class);
     }
 
 }

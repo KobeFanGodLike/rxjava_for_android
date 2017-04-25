@@ -46,7 +46,8 @@ public class MainFragment extends Fragment {
 
     @OnClick(R.id.btn_net2)
     void btn_net2() {
-        open(new Net2Fragment());
+        Net2Fragment fragment = new Net2Fragment();
+        open(fragment);
     }
 
     @OnClick(R.id.btn_not_more_click)
